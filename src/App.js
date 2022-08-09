@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Header } from "./components/Header";
+import { Message } from "./components/Message";
+import { Footer } from "./components/Footer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import styles from "./App.module.css";
+
+const App = () => {
+    const title = "Messenger";
+    const subtitle = "Hello ReactJS Program";
+    const text = "Have a nice day!"
+    return (
+        <div className={styles.container}>
+            <Header
+                title={title}
+                subtitle={subtitle}
+            />
+            <Message text={text} />
+            <Footer />
+        </div>
+    );
 }
 
 export default App;

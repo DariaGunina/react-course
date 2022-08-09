@@ -1,0 +1,13 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    color: var(--light-color-text);
+    font-size: 16px;
+    border-top: 4px dashed var(--light-color-text);
+    flex: 0 0 auto;
+    padding: 20px;
+  }
+  
+.info {
+    margin: 0;
+}
