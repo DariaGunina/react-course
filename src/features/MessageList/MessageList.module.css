@@ -4,6 +4,12 @@
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 0 20px;
   flex: 1 0 auto;
+  height: calc(100vh - 144px - 63px);
+}
+
+.wrapper {
+  overflow: auto;
+  padding: 20px 0;
 }
