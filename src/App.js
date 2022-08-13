@@ -1,23 +1,24 @@
-import { Header } from "./components/Header";
-import { Message } from "./components/Message";
-import { Footer } from "./components/Footer";
+import { Header } from "./features/Header";
+import { Footer } from "./features/Footer";
+import { MessageList } from "./features/MessageList";
 
 import styles from "./App.module.css";
 
+
 const App = () => {
-    const title = "Messenger";
-    const subtitle = "Hello ReactJS Program";
-    const text = "Have a nice day!"
-    return (
-        <div className={styles.container}>
-            <Header
-                title={title}
-                subtitle={subtitle}
-            />
-            <Message text={text} />
-            <Footer />
-        </div>
-    );
+  const title = "Messenger";
+  const subtitle = "Hello ReactJS Program";
+
+  return (
+    <div className={styles.container}>
+      <Header
+        title={title}
+        subtitle={subtitle}
+      />
+      <MessageList />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
