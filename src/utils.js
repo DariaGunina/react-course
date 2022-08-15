@@ -1,0 +1,1 @@
+export const time = new Date().toLocaleTimeString().slice(0,-3); 

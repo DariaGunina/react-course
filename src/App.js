@@ -1,23 +1,22 @@
 import { Header } from "./features/Header";
 import { Footer } from "./features/Footer";
-import { MessageList } from "./features/MessageList";
+import { Layout } from "./features/Layout";
 
-import styles from "./App.module.css";
-
+import { Container } from "./styles";
 
 const App = () => {
   const title = "Messenger";
   const subtitle = "Hello ReactJS Program";
 
   return (
-    <div className={styles.container}>
+    <Container>
       <Header
         title={title}
         subtitle={subtitle}
       />
-      <MessageList />
+      <Layout />
       <Footer />
-    </div>
+    </Container>
   );
 }
 
