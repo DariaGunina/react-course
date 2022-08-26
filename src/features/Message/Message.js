@@ -1,12 +1,35 @@
+import classNames from "classnames";
+import PropTypes from "prop-types";
+import { time } from "../../utils";
+import { 
+  Container,
+  Author,
+  Text,
+  Time
+} from './styles';
+
 import styles from "./Message.module.css";
 
 export const Message = ({ user, author, message}) => {
+
   return (
-    <div className={styles.container}>
-      <p className={styles.author}>
-        {author === user ? "Я" : "Бот"}:
-      </p> 
-      <p className={styles.message}>{message}</p>
-    </div>
-  ) 
+    <Container 
+      className={
+        classNames({
+          [styles.currentMessage]: author !== user,
+      })}
+    >
+      <Author>
+        {author === user ? "Я" : "Бот"}
+      </Author> 
+      <Text>{message}</Text>
+      <Time>{time}</Time>
+   </Container>
+  )
+};
+
+Message.propTypes = {
+  user: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
 };

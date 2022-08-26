@@ -1,9 +1,9 @@
-import styles from "./Footer.module.css";
+import { Container, Info } from './styles';
 
 export const Footer = () => {
   return (
-    <div className={styles.footer}>
-      <p className={styles.info}>React Course 2022</p>
-    </div>
+    <Container>
+      <Info>React Course 2022</Info>
+    </Container>
   );
 };

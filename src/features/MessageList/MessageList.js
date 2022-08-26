@@ -3,7 +3,7 @@ import { USERS } from "../../constants";
 import { Form } from "../Form";
 import { Message } from "../Message";
 
-import styles from "./MessageList.module.css";
+import { Container, Wrapper } from './styles'
 
 export const MessageList = () => {
   const [inputValue, setInputValue] = useState("");
@@ -12,8 +12,14 @@ export const MessageList = () => {
 
   const handleSubmit = () => {
     if (inputValue) {
-      setData([...data, {author: USERS.USER, message: inputValue}]);
+      setData([...data, { author: USERS.USER, message: inputValue }]);
       setInputValue("");
+    }
+  };
+
+  const handlePressInput = ({ code }) => {
+    if (code === "Enter") {
+      handleSubmit();
     }
   };
 
@@ -21,9 +27,9 @@ export const MessageList = () => {
     let timer;
     scrollAnchor.current?.scrollIntoView();
 
-    if(data.length && data.at(-1).author === USERS.USER) {
+    if (data.length && data.at(-1).author === USERS.USER) {
       timer = setTimeout(() => {
-        setData([...data, {author: USERS.OPPONENT, message: "Хорошего дня!"}]);
+        setData([...data, { author: USERS.OPPONENT, message: "Хорошего дня!" }]);
         scrollAnchor.current?.scrollIntoView();
       }, 1500)
     }
@@ -34,8 +40,8 @@ export const MessageList = () => {
   }, [data]);
     
   return (
-    <div className={styles.container}>
-      <div className={styles.wrapper}>
+    <Container>
+      <Wrapper>
         {
           data.map((item, index) => 
             <div key={index}>
@@ -48,12 +54,13 @@ export const MessageList = () => {
           )
         }
         <div ref={scrollAnchor} />
-      </div>
+      </Wrapper>
       <Form 
-        inputValue={inputValue} 
-        setInputValue={setInputValue} 
-        onSubmit={handleSubmit} 
+        value={inputValue} 
+        setValue={setInputValue}
+        handlePressInput={handlePressInput} 
+        onSubmit={handleSubmit}
       />
-    </div>
+    </Container>
   )
 };

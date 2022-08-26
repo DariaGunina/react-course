@@ -1,26 +1,40 @@
 import React from "react";
-import icon from "../../assets/icon.png";
+import PropTypes from "prop-types";
 
-import styles from "./Header.module.css";
+import { 
+  Container, 
+  Head, 
+  Title, 
+  Subtitle, 
+  Counter,
+  Content,
+  Count,
+  Icon,
+  Inscription
+} from './styles';
 
 export const Header = ({title, subtitle}) => {
   const [count, setCount] = React.useState(1);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.subtitle}>{subtitle}</p>
-      </div>
-      <div className={styles.counter}>
-        <div className={styles.content}>
-          <div className={styles.count}>{count}</div>
-          <div onClick={() => setCount(count + 1)}>
-            <img src={icon} className={styles.icon} alt="icon"/>
-          </div>
-        </div>
-        <p className={styles.name}>Click me!</p>
-      </div>
-    </div>
+    <Container>
+      <Head>
+       <Title>{title}</Title>
+       <Subtitle>{subtitle}</Subtitle>
+      </Head>
+      <Counter>
+        <Content>
+          <Count>{count}</Count>
+          <Icon onClick={() => setCount(count + 1)} />
+        </Content>
+        <Inscription>Click me!</Inscription>
+      </Counter>
+        
+    </Container>
   );
+};
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
 };
