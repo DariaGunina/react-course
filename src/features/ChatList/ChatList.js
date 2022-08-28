@@ -1,60 +1,50 @@
+import { useParams } from "react-router-dom";
+import { useState } from 'react';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
 import { chatList } from "../../mock";
-import img from "../../assets/avatar.jpg";
+import  { Chat}  from "../Chat";
 
-import { Time, Container } from "./styles";
+import { 
+  AddChat, 
+  Text, 
+  HeaderContainer, 
+  Box
+} from "./styles";
 
 export const ChatList = () => {
+  const { roomId } = useParams();
+  const [chats, setChats] = useState(chatList);
+
+  const addChat = () => setChats(chats => {
+    const newChatCounter = chats.length + 1;
+    return [...chats, {
+      title: `Chat-${newChatCounter}`,
+      subtitle: "Data",
+      time: new Date().toLocaleTimeString().slice(0,-3),
+      id: String(newChatCounter),
+    }]
+  });
+ 
   return (
-    <>
-      <List 
-        sx={{ 
-          width: "50%",
-          borderRight: "1px solid #80808038",
-        }}
-      >
+    <Box>
+      <HeaderContainer>
+        <Text> Создать новый чат</Text>
+        <AddChat onClick={addChat} />
+      </HeaderContainer>
+      <List component="nav" sx={{maxHeight: '60vh', overflow: 'auto'}}>
         {
-          chatList.map((item) => 
-            <ListItem 
-              key={item.id} 
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "10px",
-                marginBottom: "10px",
-              }}
-              >
-                <ListItemAvatar>
-                  <Avatar
-                    alt="Avatar"
-                    src={img}
-                  />
-                </ListItemAvatar>
-                <Container>
-                  <ListItemText 
-                  primary = {item.title} 
-                  sx={{ 
-                    color: "#b8383d"
-                  }}
-                />
-                <ListItemText 
-                  primary = {item.subtitle} 
-                  sx={{ 
-                    color: "#808080",
-                    fontSize: "12px",
-                  }}
-                />
-                </Container>
-                <ListItemText />
-                <Time>{item.time}</Time>
-            </ListItem>
+          chats.map((item) =>
+            <Chat 
+              id={item.id}
+              roomId={roomId}
+              title={item.title}
+              subtitle={item.subtitle}
+              time={item.time}
+              key={item.id}
+            />
           )
         }
       </List>
-    </>
+    </Box>
   )
 };

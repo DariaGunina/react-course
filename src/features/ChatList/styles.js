@@ -1,12 +1,23 @@
 import styled from "@emotion/styled";
+import AddCommentIcon from '@mui/icons-material/AddComment';
+import { List } from "@mui/material";
 
-export const Time = styled('p')(({theme}) => ({
-  marginRight: "auto",
-  color: theme.palette.secondary.main,
-  fontSize: "12px",
+export const AddChat = styled(AddCommentIcon)(({theme}) => ({
+  fill: theme.palette.primary.main,
 }));
 
-export const Container = styled('div')(({theme}) => ({
+export const HeaderContainer = styled.div(() => ({
   display: "flex",
-  flexDirection: "column",
+  justifyContent: "space-between",
+  margin: "20px",
+  alignItems: "center",
+}));
+
+export const Text = styled.p(({theme}) => ({
+  color: theme.palette.secondary.main,
+}));
+
+export const Box = styled.div(({theme}) => ({
+  width: "50%",
+  borderRight: "1px solid #80808038",
 }));

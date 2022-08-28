@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { menu } from "../../constants";
 
 import { 
   Container, 
@@ -10,7 +11,9 @@ import {
   Content,
   Count,
   Icon,
-  Inscription
+  Inscription,
+  Link,
+  LinkContainer
 } from './styles';
 
 export const Header = ({title, subtitle}) => {
@@ -22,6 +25,13 @@ export const Header = ({title, subtitle}) => {
        <Title>{title}</Title>
        <Subtitle>{subtitle}</Subtitle>
       </Head>
+      <LinkContainer>
+        {menu.map((item) => (
+          <Link key={item.to} to={item.to} style={{ textDecoration: 'none' }}>
+            {item.title}
+          </Link>
+        ))}
+      </LinkContainer>
       <Counter>
         <Content>
           <Count>{count}</Count>
