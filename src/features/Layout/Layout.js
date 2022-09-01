@@ -1,13 +1,17 @@
-import { MessageList } from "../MessageList";
-import { ChatList } from "../ChatList";
+import PropTypes from "prop-types";
 
 import { Container } from "./styles";
 
-export const Layout = () => {
+export const Layout = ({chatList, messageList}) => {
   return (
     <Container>
-      <ChatList />
-      <MessageList />
+      {chatList}
+      {messageList}
     </Container>
   )
+};
+
+Layout.propTypes = {
+  chatList: PropTypes.element,
+  messageList: PropTypes.element,
 };

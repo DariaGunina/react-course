@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { NavLink } from "react-router-dom";
 
 export const Container = styled('div')(() => ({
   display: "flex",
@@ -52,4 +53,16 @@ export const Inscription = styled('div')(({theme}) => ({
   fontSize: "14px",
   color: theme.palette.secondary.main,
   margin: 0,
+}));
+
+export const LinkContainer = styled('div')(() => ({
+  fontSize: "16px",
+  display: "flex",
+  alignItems: "center",
+}));
+
+export const Link = styled(NavLink)(({theme}) => ({
+  cursor: "pointer",
+  color: theme.palette.primary.main,
+  padding: "20px",
 }));
