@@ -44,9 +44,14 @@ export const Count = styled('div')(() => ({
   fontSize: "14px"
 }));
 
-export const Icon = styled(FavoriteIcon)(({theme}) => ({
+export const IconLike = styled(FavoriteIcon)(({theme}) => ({
   cursor: "pointer",
   color: theme.palette.primary.main,
+}));
+
+export const IconDislike = styled(FavoriteIcon)(({theme}) => ({
+  cursor: "pointer",
+  color: "green",
 }));
 
 export const Inscription = styled('div')(({theme}) => ({
@@ -66,3 +71,31 @@ export const Link = styled(NavLink)(({theme}) => ({
   color: theme.palette.primary.main,
   padding: "20px",
 }));
+
+export const Text = styled('p')(({theme}) => ({
+  fontSize: "16px",
+  color: theme.palette.secondary.main,
+  margin: 0,
+}));
+
+export const Box = styled('div')(() => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center"
+}));
+
+export const ButtonBox = styled('div')(() => ({
+  display: "flex",
+  flexDirection: "row"
+}));
+
+export const Button = styled('button')(({theme}) => ({
+  marginRight: "3px",
+  marginTop: "10px",
+  fontSize: "12px",
+  border: "1px solid #b8383d17",
+  borderRadius: "5px",
+  padding: "5px",
+}));
+

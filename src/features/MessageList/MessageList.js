@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useParams } from "react-router-dom";
 import { USERS } from "../../constants";
 import { Form } from "../Form";
 import { Message } from "../Message";
@@ -7,29 +8,39 @@ import { Container, Wrapper } from './styles'
 
 export const MessageList = () => {
   const [inputValue, setInputValue] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    1: [{ author: USERS.USER, message: "test" }],
+  });
   const scrollAnchor = useRef();
+  const { roomId } = useParams();
 
-  const handleSubmit = () => {
-    if (inputValue) {
-      setData([...data, { author: USERS.USER, message: inputValue }]);
+  const handleSubmit = useCallback((message, author = USERS.USER) => {
+    if (message) {
+      setData((state) => ({
+        ...state,
+        [roomId]: [
+          ...(state[roomId] ?? []),
+          { author, message },
+        ],
+      }));
       setInputValue("");
     }
-  };
+  }, [roomId]);
 
   const handlePressInput = ({ code }) => {
     if (code === "Enter") {
-      handleSubmit();
+      handleSubmit(inputValue);
     }
   };
 
   useEffect(() => {
+    const messages = data[roomId] ?? [];
     let timer;
     scrollAnchor.current?.scrollIntoView();
 
-    if (data.length && data.at(-1).author === USERS.USER) {
+    if (messages.length && messages.at(-1).author === USERS.USER) {
       timer = setTimeout(() => {
-        setData([...data, { author: USERS.OPPONENT, message: "Хорошего дня!" }]);
+        handleSubmit("Хорошего дня!",  USERS.OPPONENT)
         scrollAnchor.current?.scrollIntoView();
       }, 1500)
     }
@@ -37,13 +48,16 @@ export const MessageList = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [data]);
+  }, [data, roomId, handleSubmit]);
+
+  const messages = data[roomId] ?? [];
+  console.log(data)
     
   return (
     <Container>
       <Wrapper>
         {
-          data.map((item, index) => 
+          messages.map((item, index) => 
             <div key={index}>
               <Message 
                 user={USERS.USER}

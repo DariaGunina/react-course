@@ -11,6 +11,7 @@ import {
 import styles from "./Message.module.css";
 
 export const Message = ({ user, author, message}) => {
+  console.log(user, author, "0")
   return (
     <Container 
       className={
