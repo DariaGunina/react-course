@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import ListItemButton from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -22,49 +21,43 @@ export const Chat = ({
   onDelete,
 }) => {
     return (
-      <Link 
-        key={id} 
-        to={`/chat/${id}`} 
-        style={{ textDecoration: 'none' }}
-      >
-        <ListItemButton 
-          selected={id === roomId} 
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "10px",
-            marginBottom: "10px",
-          }}
-          >
-            <Box>
-              <ListItemAvatar>
-                <Avatar
-                  alt="Avatar"
-                  src={img}
-                />
-              </ListItemAvatar>
-              <Container>
-                <ListItemText 
-                  primary = {title} 
-                  sx={{ 
-                    color: "#b8383d"
-                  }}
-                />
-                <ListItemText 
-                  primary = {subtitle} 
-                  sx={{ 
-                    color: "#808080",
-                    fontSize: "12px",
-                  }}
-                />
-              </Container>
-            </Box>
+      <ListItemButton 
+        selected={title === roomId} 
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "10px",
+          marginBottom: "10px",
+        }}
+        >
+          <Box>
+            <ListItemAvatar>
+              <Avatar
+                alt="Avatar"
+                src={img}
+              />
+            </ListItemAvatar>
             <Container>
-              <Close onClick={onDelete}/>
-              <Time>{time}</Time>
+              <ListItemText 
+                primary = {title} 
+                sx={{ 
+                  color: "#b8383d"
+                }}
+              />
+              <ListItemText 
+                primary = {subtitle} 
+                sx={{ 
+                  color: "#808080",
+                  fontSize: "12px",
+                }}
+              />
             </Container>
-        </ListItemButton>
-      </Link>
+          </Box>
+          <Container>
+            <Close onClick={(e) => onDelete(title, e)}/>
+            <Time>{time}</Time>
+          </Container>
+      </ListItemButton>
     )
 };
 

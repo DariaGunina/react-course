@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import AddCommentIcon from '@mui/icons-material/AddComment';
-import { List } from "@mui/material";
 
 export const AddChat = styled(AddCommentIcon)(({theme}) => ({
   fill: theme.palette.primary.main,

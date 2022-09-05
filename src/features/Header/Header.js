@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { menu } from "../../constants";
 import { ThemeContext } from "../../styles/theme";
-import { increment, decrement } from "../../store/counter";
+import { 
+  increment, 
+  decrement, 
+  countSelector 
+} from "../../store/counter";
 
 import { 
   Container, 
@@ -26,7 +30,7 @@ import {
 
 export const Header = ({title, subtitle}) => {
   const { theme, themeSetter } = useContext(ThemeContext);
-  const count = useSelector((state) => state.counter.count);
+  const count = useSelector(countSelector);
   const dispatch = useDispatch();
   
   return (

@@ -48,8 +48,6 @@ export const CustomThemeProvider = ({ children, initialTheme = "light" }) => {
     }
   }, []);
 
-  console.log(theme)
-
   return (
     <ThemeContext.Provider value={{ theme, themeSetter }}>
       <ThemeProvider theme={themeMUI[theme.name]}>{children}</ThemeProvider>

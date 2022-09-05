@@ -1,31 +1,33 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { 
+  useState, 
+  useEffect, 
+  useRef, 
+  useCallback, 
+  useMemo 
+} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { USERS } from "../../constants";
 import { Form } from "../Form";
 import { Message } from "../Message";
+import { sendMessage, messagesSelector } from "../../store/messages";
 
 import { Container, Wrapper } from './styles'
 
 export const MessageList = () => {
   const [inputValue, setInputValue] = useState("");
-  const [data, setData] = useState({
-    1: [{ author: USERS.USER, message: "test" }],
-  });
-  const scrollAnchor = useRef();
   const { roomId } = useParams();
+  const scrollAnchor = useRef();
+  const selector = useMemo(() => messagesSelector(roomId), [roomId]);
+  const messages = useSelector(selector);
+  const dispatch = useDispatch();
 
   const handleSubmit = useCallback((message, author = USERS.USER) => {
     if (message) {
-      setData((state) => ({
-        ...state,
-        [roomId]: [
-          ...(state[roomId] ?? []),
-          { author, message },
-        ],
-      }));
+      dispatch(sendMessage(roomId, { message, author }));
       setInputValue("");
     }
-  }, [roomId]);
+  }, [roomId, dispatch]);
 
   const handlePressInput = ({ code }) => {
     if (code === "Enter") {
@@ -34,7 +36,6 @@ export const MessageList = () => {
   };
 
   useEffect(() => {
-    const messages = data[roomId] ?? [];
     let timer;
     scrollAnchor.current?.scrollIntoView();
 
@@ -48,10 +49,7 @@ export const MessageList = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [data, roomId, handleSubmit]);
-
-  const messages = data[roomId] ?? [];
-  console.log(data)
+  }, [messages, handleSubmit]);
     
   return (
     <Container>
@@ -62,7 +60,9 @@ export const MessageList = () => {
               <Message 
                 user={USERS.USER}
                 author={item.author}
-                message={item.message} 
+                message={item.message}
+                roomId={roomId}
+                messageId={item.id}
               />
             </div>
           )
