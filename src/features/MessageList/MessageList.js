@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { USERS } from "../../constants";
 import { Form } from "../Form";
 import { Message } from "../Message";
-import { sendMessage, messagesSelector } from "../../store/messages";
+import { sendMessageWithBot, messagesSelector } from "../../store/messages";
 
 import { Container, Wrapper } from './styles'
 
@@ -24,7 +24,7 @@ export const MessageList = () => {
 
   const handleSubmit = useCallback((message, author = USERS.USER) => {
     if (message) {
-      dispatch(sendMessage(roomId, { message, author }));
+      dispatch(sendMessageWithBot(roomId, { message, author }));
       setInputValue("");
     }
   }, [roomId, dispatch]);
@@ -36,20 +36,8 @@ export const MessageList = () => {
   };
 
   useEffect(() => {
-    let timer;
     scrollAnchor.current?.scrollIntoView();
-
-    if (messages.length && messages.at(-1).author === USERS.USER) {
-      timer = setTimeout(() => {
-        handleSubmit("Хорошего дня!",  USERS.OPPONENT)
-        scrollAnchor.current?.scrollIntoView();
-      }, 1500)
-    }
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, [messages, handleSubmit]);
+  }, [messages]);
     
   return (
     <Container>
