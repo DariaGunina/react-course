@@ -2,11 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleVisibleProfile } from "../../store/profile";
 import image from "../../assets/avatar2.jpg";
 import { ProfileForm } from "../ProfileForm";
+import { profileSelector } from "../../store/profile";
 
 import { Container, Text, Avatar, Button} from "./styles";
 
 export const Profile = () => {
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector(profileSelector);
   const dispatch = useDispatch();
 
   return (

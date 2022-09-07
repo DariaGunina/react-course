@@ -1,17 +1,22 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { deleteMessage } from "../../store/messages";
 import { time } from "../../utils";
 import { 
   Container,
   Author,
   Text,
-  Time
+  Time,
+  Close,
+  Box
 } from './styles';
 
 import styles from "./Message.module.css";
 
-export const Message = ({ user, author, message}) => {
-  console.log(user, author, "0")
+export const Message = ({ user, author, message, roomId, messageId}) => {
+  const dispatch = useDispatch();
+
   return (
     <Container 
       className={
@@ -19,11 +24,20 @@ export const Message = ({ user, author, message}) => {
           [styles.currentMessage]: author !== user,
       })}
     >
-      <Author>
-        {author === user ? "Я" : "Бот"}
-      </Author> 
-      <Text>{message}</Text>
-      <Time>{time}</Time>
+      <Box>
+        <Author>
+          {author === user ? "Я" : "Бот"}
+        </Author> 
+        <Text>{message}</Text>
+      </Box>
+      <Box>
+        <Close 
+          onClick = {
+            () => dispatch(deleteMessage(roomId, messageId))
+          } 
+        />
+        <Time>{time}</Time>
+      </Box>
    </Container>
   )
 };
