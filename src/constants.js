@@ -16,4 +16,8 @@ export const menu = [
     title: "Chat",
     to: "/chat",
   },
+  {
+    title: "Gists",
+    to: "/gists",
+  },
 ];
