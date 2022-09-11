@@ -26,7 +26,7 @@ export const Form = ({
         onKeyPress={handlePressInput}
         endAdornment={
           <InputAdornment position="end">
-            {value && <Send onClick={onSubmit} color="primary" />}
+            {value && <Send onClick={() => onSubmit(value)} color="primary" />}
           </InputAdornment>
         }
         inputRef={focusInput}
