@@ -10,6 +10,7 @@ export const Time = styled('p')(({theme}) => ({
 export const Container = styled('div')(() => ({
   display: "flex",
   flexDirection: "column",
+  alignItems: "flex-end",
 }));
 
 export const Close = styled(CloseIcon)(({theme}) => ({

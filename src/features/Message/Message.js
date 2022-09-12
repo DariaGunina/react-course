@@ -2,7 +2,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteMessage } from "../../store/messages";
-import { time } from "../../utils";
+
 import { 
   Container,
   Author,
@@ -14,7 +14,7 @@ import {
 
 import styles from "./Message.module.css";
 
-export const Message = ({ user, author, message, roomId, messageId}) => {
+export const Message = ({ user, author, message, roomId, messageId, time}) => {
   const dispatch = useDispatch();
 
   return (
@@ -46,4 +46,5 @@ Message.propTypes = {
   user: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
 };

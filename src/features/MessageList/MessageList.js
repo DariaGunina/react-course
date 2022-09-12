@@ -7,6 +7,7 @@ import {
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { format } from "date-fns";
 import { USERS } from "../../constants";
 import { Form } from "../Form";
 import { Message } from "../Message";
@@ -51,6 +52,7 @@ export const MessageList = () => {
                 message={item.message}
                 roomId={roomId}
                 messageId={item.id}
+                time={format(new Date(item.date), "yyyy-MM-dd HH:MM:SS")}
               />
             </div>
           )
