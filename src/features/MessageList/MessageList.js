@@ -11,7 +11,7 @@ import { format } from "date-fns";
 import { USERS } from "../../constants";
 import { Form } from "../Form";
 import { Message } from "../Message";
-import { sendMessageWithBot, messagesSelector } from "../../store/messages";
+import { sendMessageFb, messagesSelector } from "../../store/messages";
 
 import { Container, Wrapper } from './styles'
 
@@ -25,7 +25,7 @@ export const MessageList = () => {
 
   const handleSubmit = useCallback((message, author = USERS.USER) => {
     if (message) {
-      dispatch(sendMessageWithBot(roomId, { message, author }));
+      dispatch(sendMessageFb({ message, author }, roomId));
       setInputValue("");
     }
   }, [roomId, dispatch]);

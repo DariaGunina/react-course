@@ -1,7 +1,9 @@
 import {useContext} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import { menu } from "../../constants";
+import { signOut } from "firebase/auth";
+import { menuWithSession, menuWithoutSession } from "../../constants";
+import { auth } from "../../api/firebase";
 import { ThemeContext } from "../../styles/theme";
 import { 
   increment, 
@@ -25,10 +27,13 @@ import {
   Text,
   Box,
   ButtonBox,
-  Button
+  Button,
+  UserContainer,
+  User,
+  Close
 } from './styles';
 
-export const Header = ({title, subtitle}) => {
+export const Header = ({title, subtitle, email}) => {
   const { theme, themeSetter } = useContext(ThemeContext);
   const count = useSelector(countSelector);
   const dispatch = useDispatch();
@@ -39,9 +44,31 @@ export const Header = ({title, subtitle}) => {
        <Title>{title}</Title>
        <Subtitle>{subtitle}</Subtitle>
       </Head>
+      {email && (
+        <UserContainer>
+          <User>USER: {email}</User>
+          <Close
+            onClick={() => {
+              signOut(auth);
+            }}
+          />
+        </UserContainer>
+      )}
       <LinkContainer>
-        {menu.map((item) => (
-          <Link key={item.to} to={item.to} style={{ textDecoration: 'none' }}>
+        {email ? menuWithSession.map((item) => (
+          <Link 
+            key={item.to} 
+            to={item.to} 
+            style={{ textDecoration: 'none' }}
+          >
+            {item.title}
+          </Link>
+        )) : menuWithoutSession.map((item) => (
+          <Link 
+            key={item.to} 
+            to={item.to} 
+            style={{ textDecoration: 'none' }}
+          >
             {item.title}
           </Link>
         ))}
@@ -79,4 +106,5 @@ export const Header = ({title, subtitle}) => {
 Header.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
+  email: PropTypes.string,
 };

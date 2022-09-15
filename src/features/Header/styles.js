@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { NavLink } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
 
 export const Container = styled('div')(() => ({
   display: "flex",
@@ -66,6 +67,19 @@ export const LinkContainer = styled('div')(() => ({
   alignItems: "center",
 }));
 
+export const UserContainer = styled('div')(() => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
+}));
+
+export const User = styled('p')(({theme}) => ({
+  fontSize: "16px",
+  color: theme.palette.primary.main,
+  margin: "10px",
+}));
+
+
 export const Link = styled(NavLink)(({theme}) => ({
   cursor: "pointer",
   color: theme.palette.primary.main,
@@ -97,5 +111,10 @@ export const Button = styled('button')(({theme}) => ({
   border: "1px solid #b8383d17",
   borderRadius: "5px",
   padding: "5px",
+}));
+
+export const Close = styled(CloseIcon)(({theme}) => ({
+  fill: theme.palette.primary.main,
+  cursor: "pointer",
 }));
 

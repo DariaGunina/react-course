@@ -5,19 +5,15 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import img from "../../assets/avatar.jpg";
 
-import { 
-  Time, 
+import {  
   Container, 
   Close,
   Box
 } from "./styles";
 
 export const Chat = ({
-  id,
   roomId,
   title,
-  subtitle,
-  time,
   onDelete,
 }) => {
     return (
@@ -44,28 +40,19 @@ export const Chat = ({
                   color: "#b8383d"
                 }}
               />
-              <ListItemText 
-                primary = {subtitle} 
-                sx={{ 
-                  color: "#808080",
-                  fontSize: "12px",
-                }}
-              />
             </Container>
           </Box>
           <Container>
             <Close onClick={(e) => onDelete(title, e)}/>
-            <Time>{time}</Time>
           </Container>
       </ListItemButton>
     )
 };
 
 Chat.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  id: PropTypes.string,
   roomId: PropTypes.string,
-  time: PropTypes.string,
   onClose: PropTypes.func,
 };

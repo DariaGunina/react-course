@@ -1,14 +1,18 @@
 import { nanoid } from "nanoid";
-import { SEND_MESSAGE, DELETE_MESSAGE } from "./types";
-import { USERS } from "../../constants";
+import { 
+  SEND_MESSAGE, 
+  DELETE_MESSAGE, 
+  GET_MESSAGES_START,
+  GET_MESSAGES_SUCCESS,
+  GET_MESSAGES_ERROR,
+  SEND_MESSAGES_START,
+  SEND_MESSAGES_ERROR
+} from "./types";
 
 const initialState = {
-  messages: {
-    "Chat-1": [
-      { author: USERS.USER, message: "test", date: new Date(), id: nanoid() },
-      { author: USERS.OPPONENT, message: "test", date: new Date(), id: nanoid() },
-    ],
-  },
+  messages: {},
+  error: null,
+  pending: false,
 };
 
 export const messagesReducer = (state = initialState, action) => {
@@ -35,6 +39,18 @@ export const messagesReducer = (state = initialState, action) => {
           ),
         },
       };
+
+    case GET_MESSAGES_START:
+      return { ...state, pending: true, error: null };
+    case GET_MESSAGES_SUCCESS:
+      return { ...state, pending: false, messages: action.payload };
+    case GET_MESSAGES_ERROR:
+      return { ...state, pending: false, error: action.payload };
+
+      case SEND_MESSAGES_START:
+        return { ...state, pending: true, error: null };
+      case SEND_MESSAGES_ERROR:
+        return { ...state, pending: false, error: action.payload };
 
     default:
       return state;

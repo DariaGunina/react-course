@@ -3,18 +3,29 @@ export const USERS = {
   OPPONENT: "OPPONENT"
 };
 
-export const menu = [
+export const menuWithoutSession = [
+  {
+    title: "Login",
+    to: "/login",
+  },
+  {
+    title: "SignUp",
+    to: "/signup",
+  },
+];
+
+export const menuWithSession = [
   {
     title: "Home",
     to: "/",
   },
   {
-    title: "Profile",
-    to: "/profile",
-  },
-  {
     title: "Chat",
     to: "/chat",
+  },
+  {
+    title: "Profile",
+    to: "/profile",
   },
   {
     title: "Gists",
