@@ -14,8 +14,25 @@ import { conversationsReducer } from "./conversations";
 import { messagesReducer } from "./messages";
 import { logger, timeScheduler, botMessage } from "./middlewares";
 import { getPublicApi, searchGistsByNameApi } from "../api/gists";
+import {
+  createConversationApi,
+  getConversationsApi,
+  removeConversationApi,
+} from "../api/conversations";
+import {
+  getMessagesApi,
+  createMessageApi,
+} from "../api/messages";
 
-const api = { getPublicApi, searchGistsByNameApi };
+const api = {
+  getPublicApi,
+  searchGistsByNameApi,
+  createConversationApi,
+  getConversationsApi,
+  removeConversationApi,
+  getMessagesApi,
+  createMessageApi,
+};
 
 const persistConfig = {
   key: "key",

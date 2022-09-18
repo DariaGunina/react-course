@@ -4,8 +4,8 @@ import { List } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  deleteConversation,
-  createConversation,
+  removeConversationByName,
+  createConversationByName as createConversation,
   conversationsSelector,
 } from "../../store/conversations";
 import  { Chat}  from "../Chat";
@@ -26,7 +26,7 @@ export const ChatList = () => {
   const deleteConversationByName = useCallback(
     (name, e) => {
       e.preventDefault();
-      dispatch(deleteConversation(name));
+      dispatch(removeConversationByName(name));
       navigate("/chat");
     },
     [dispatch, navigate]
@@ -53,17 +53,14 @@ export const ChatList = () => {
         {
           conversations.map((item) =>
             <Link 
-              key={item.title} 
-              to={`/chat/${item.title}`} 
+              key={item} 
+              to={`/chat/${item}`} 
               style={{ textDecoration: 'none' }}
             >
               <Chat 
-                id={item.id}
                 roomId={roomId}
-                title={item.title}
-                subtitle={item.subtitle}
-                time={item.time}
-                key={item.id}
+                title={item}
+                key={item}
                 onDelete={deleteConversationByName}
               />
             </Link>  
