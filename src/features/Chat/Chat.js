@@ -54,5 +54,5 @@ Chat.propTypes = {
   subtitle: PropTypes.string,
   id: PropTypes.string,
   roomId: PropTypes.string,
-  onClose: PropTypes.func,
+  onDelete: PropTypes.func,
 };

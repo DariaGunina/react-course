@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateProfile } from "../../store/profile";
+import PropTypes from "prop-types";
+import { updateProfile } from "../../../store/profile";
 
 import { Title, Input, Button} from "./styles";
 
@@ -41,8 +42,18 @@ export const ProfileForm = ({ firstName, lastName, phone }) => {
           onChange={handleChangeForm}
         />
 
-        <Button onClick={() => dispatch(updateProfile(form))}>Save</Button>
+        <Button
+          data-testid="buttonSave"
+          onClick={() => dispatch(updateProfile(form))}>
+            Save
+          </Button>
       </div>
     </>
   );
+};
+
+ProfileForm.propTypes = {
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  phone: PropTypes.string,
 };

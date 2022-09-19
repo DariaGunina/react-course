@@ -41,5 +41,6 @@ export const Close = styled(CloseIcon)(({theme}) => ({
 export const Box = styled("div")(() => ({
   display: "flex",
   flexDirection: "column",
+  alignItems: "flex-end",
 }));
 

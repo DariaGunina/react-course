@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 
 export const WelcomeImage = styled("img")(() => ({
-  width: "300px",
-  height: "400px",
   marginBottom: "25px"
 }));
 
@@ -10,6 +8,7 @@ export const Container = styled("div")(() => ({
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
+  justifyContent: "center",
   flex: "1 0 auto",
 }));
 
