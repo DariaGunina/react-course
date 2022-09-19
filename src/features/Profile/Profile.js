@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { toggleVisibleProfile } from "../../store/profile";
 import image from "../../assets/avatar2.jpg";
-import { ProfileForm } from "../ProfileForm";
+import { ProfileForm } from "../Forms";
 import { profileSelector } from "../../store/profile";
 
 import { Container, Text, Avatar, Button} from "./styles";

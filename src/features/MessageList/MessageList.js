@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
 import { USERS } from "../../constants";
-import { Form } from "../Form";
+import { Form } from "../Forms";
 import { Message } from "../Message";
 import { sendMessageFb, messagesSelector } from "../../store/messages";
 

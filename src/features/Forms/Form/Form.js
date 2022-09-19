@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Input from '@mui/material/Input';
 import { InputAdornment } from "@mui/material";
+
 import { FormContainer, Send } from "./styles";
 
 export const Form = ({
@@ -18,6 +19,7 @@ export const Form = ({
   return (
     <FormContainer>
       <Input
+        data-testid="input"
         fullWidth
         autoFocus
         value={value}
@@ -26,7 +28,13 @@ export const Form = ({
         onKeyPress={handlePressInput}
         endAdornment={
           <InputAdornment position="end">
-            {value && <Send onClick={() => onSubmit(value)} color="primary" />}
+            {value && 
+              <Send 
+                data-testid="buttonSubmit" 
+                onClick={() => onSubmit(value)} 
+                color="primary" 
+              />
+            }
           </InputAdornment>
         }
         inputRef={focusInput}

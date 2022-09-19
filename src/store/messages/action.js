@@ -9,7 +9,7 @@ import {
 } from "./types";
 
 export const sendMessage = (roomId, message) => {
-  return { type: SEND_MESSAGE, payload: { roomId, message }, meta: { delay: 500 } };
+  return { type: SEND_MESSAGE, payload: { roomId, message } };
 };
 
 export const deleteMessage = (roomId, messageId) => {

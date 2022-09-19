@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { auth } from "../../api/firebase";
+import { auth } from "../../../api/firebase";
 
 import {  
     Container, 

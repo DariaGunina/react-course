@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const Input = ({value, setValue, className, placeholder}) => 
   <input
     type="text"
@@ -6,3 +8,10 @@ export const Input = ({value, setValue, className, placeholder}) =>
     placeholder={placeholder}
     className={className}
   />;
+
+  Input.propTypes = {
+  setValue: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+};
